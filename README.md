@@ -15,7 +15,7 @@ Replace/path/to/your/ComfyUI with the actual path where your ComfyUI project is 
 接下来，克隆ergouzi-DGNJD仓库：   
 Next, clone the ergouzi DGNJD repository:   
 
-```https://github.com/11dogzi/Comfyui-ergouzi-Nodes.git```
+```git clone https://github.com/11dogzi/Comfyui-ergouzi-Nodes.git```
 
 ## 节点介绍
 如果你需要中文版可以到[二狗子的节点组中文版](https://github.com/11dogzi/Comfyui-ergouzi-DGNJD) 
