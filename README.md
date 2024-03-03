@@ -17,9 +17,9 @@ Next, clone the ergouzi DGNJD repository:
 
 ```git clone https://github.com/11dogzi/Comfyui-ergouzi-Nodes.git```
 
-## 节点介绍
-如果你需要中文版可以到[二狗子的节点组中文版](https://github.com/11dogzi/Comfyui-ergouzi-DGNJD) 
-Node Introduction 
+## 节点介绍   
+Node Introduction   
+如果你需要中文版可以到[二狗子的节点组中文版](https://github.com/11dogzi/Comfyui-ergouzi-DGNJD)     
  ## 提示词大师：
 Hint Word Master:   
 众多可选类型提示词节点，可随机   
