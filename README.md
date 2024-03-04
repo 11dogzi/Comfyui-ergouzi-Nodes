@@ -81,7 +81,11 @@ Whether it's generating text watermarks or uploading finished product watermarks
 Conventional image processing nodes:   
 现在我们可以指定图像的保存路径了！   
 Specify image save path:   
-![常规图像](docs/4图像指定保存路径.png "4图像指定保存路径")   
+![常规图像](docs/4图像指定保存路径.png "4图像指定保存路径")  
+加载任意图像！文件或者文件夹！包括psd，而且可以实时更新！    
+Load any image! File or folder! Including PSD, and can be updated in real-time!    
+![加载任意图像](docs/加载任意图像.png "加载任意图像")     
+![加载任意图像](docs/加载任意图像2.png "加载任意图像2")     
 颜色迁移     
 Color migration   
 ![常规图像](docs/4颜色迁移.png "4颜色迁移")   
