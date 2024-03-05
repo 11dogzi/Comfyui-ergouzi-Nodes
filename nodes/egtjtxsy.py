@@ -200,5 +200,3 @@ class EGCPSYTJNode:
 
         
         return (original_image,)
-NODE_CLASS_MAPPINGS = { "EG_CPSYTJ": EGCPSYTJNode }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_CPSYTJ": "2🐕Add finished watermark image" }

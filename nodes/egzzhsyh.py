@@ -51,6 +51,3 @@ class EGZZHSYH:
         blurred_mask = 1 - blurred_mask
         return (blurred_mask,)
 
-NODE_CLASS_MAPPINGS = {"EG_ZZ_HSYH": EGZZHSYH}
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_ZZ_HSYH" : "2🐕Mask Blurred Black edges" }
-

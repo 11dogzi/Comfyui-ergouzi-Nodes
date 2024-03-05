@@ -83,8 +83,6 @@ class EGJZRYTX:
         except Exception as e:
             print(f"An error occurred while processing the image for 2🐕 friendly reminders：{e}")
         return None, None
-NODE_CLASS_MAPPINGS = { "EG_TX_JZRY" : EGJZRYTX }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_TX_JZRY" : "2🐕Load any image" }
 
 
 

@@ -51,5 +51,3 @@ class EGWBRYPJ:
         concatenated_text = re.sub(r'[，,]+$', '', concatenated_text)
         
         return (concatenated_text,)
-NODE_CLASS_MAPPINGS = { "EG_TC_Node" : EGWBRYPJ }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_TC_Node" : "2🐕Text arbitrary splicing" }

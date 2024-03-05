@@ -208,7 +208,5 @@ class EGYSZTNode:
                                              Rotate, Rotation_center)
         image_out = Image.composite(text_image, back_image, rotated_text_mask)
         return (pil2tensor(image_out),)
-NODE_CLASS_MAPPINGS = { "EG-YSZT-ZT" : EGYSZTNode }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG-YSZT-ZT" : "2🐕Text watermark addition" }
 
 

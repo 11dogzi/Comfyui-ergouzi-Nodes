@@ -86,6 +86,9 @@ Specify image save path:
 Load any image! File or folder! Including PSD, and can be updated in real-time!    
 ![加载任意图像](docs/加载任意图像.png "加载任意图像")     
 ![加载任意图像](docs/加载任意图像2.png "加载任意图像2")     
+滤镜调色，批量或单选    
+Filter color adjustment, batch or single selection    
+![滤镜](docs/4滤镜.png "4滤镜")
 颜色迁移     
 Color migration   
 ![常规图像](docs/4颜色迁移.png "4颜色迁移")   

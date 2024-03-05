@@ -84,8 +84,6 @@ class EGTSCDSWPLNode:
         prompt = ','.join(prompt_parts.values()).strip()
         prompt += ','
         return (prompt,) if prompt else ('',)
-NODE_CLASS_MAPPINGS = { "EG_TSCDS_WP" : EGTSCDSWPLNode }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_TSCDS_WP" : "2🐕Item category" }
 
 
 
