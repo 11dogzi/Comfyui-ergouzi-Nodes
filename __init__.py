@@ -37,6 +37,8 @@ from .nodes.egtxcglj import EGTXLJNode
 from .nodes.egtxystz import EGHTYSTZNode
 from .nodes.egtxwhlj import EGWHLJ
 from .nodes.egzzcjpj import EGZZHBCJNode
+from .nodes.EGJDFDHT import EGRYHT
+from .nodes.EGSZJDYS import EGSZJDYS
 
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
@@ -80,6 +82,8 @@ NODE_CLASS_MAPPINGS = {
     "EG_HT_YSTZ" : EGHTYSTZNode,
     "EG_TX_WHLJ" : EGWHLJ,
     "EG_ZZHBCJ" : EGZZHBCJNode,
+    "EG_RY_HT" : EGRYHT,
+    "EG_SZ_JDYS" : EGSZJDYS
 }
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
@@ -122,5 +126,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "EG_TX_LJ" : "2🐕Conventional filters",
     "EG_HT_YSTZ" : "2🐕Color adjustment",
     "EG_TX_WHLJ" : "2🐕Internet celebrity filter",
-    "EG_ZZHBCJ" : "2🐕Mask Merge Crop",
+    "EG_ZZHBCJ" : "2🐕Mask can be cut arbitrarily",
+    "EG_RY_HT" : "2🐕Simple slider",
+    "EG_SZ_JDYS" : "2🐕+-x÷",
 }
