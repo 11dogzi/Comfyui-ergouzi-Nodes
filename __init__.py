@@ -43,6 +43,8 @@ from .nodes.EGSZHZ import EG_SS_RYZH
 from .nodes.EGWBZYSRK import EGZYWBKNode
 from .nodes.EGZZTXHZ import EGTXZZZHNode
 from .nodes.EGJBCHBMQ import EGJBCH
+from .nodes.EGTXSFBLS import EGTXSFBLSNode
+from .nodes.EGLATENTBISC import EGKLATENT
 
 NODE_CLASS_MAPPINGS = {
     "EG_FX_BDAPI": EGBDAPINode,
@@ -90,6 +92,8 @@ NODE_CLASS_MAPPINGS = {
     "EG_ZY_WBK" : EGZYWBKNode,
     "EG_TXZZ_ZH" : EGTXZZZHNode,
     "ER_JBCH": EGJBCH,
+    "EG_TX_SFBLS" : EGTXSFBLSNode,
+    "EG_K_LATENT" : EGKLATENT,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -138,4 +142,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "EG_ZY_WBK" : "2🐕Free input box",
     "EG_TXZZ_ZH" : "2🐕Mask image exchange",
     "ER_JBCH": "2🐕Redraw encoder",
+    "EG_TX_SFBLS" : "2🐕Image scaling lock",
+    "EG_K_LATENT" : "2🐕Proportional empty Latent",
 }
