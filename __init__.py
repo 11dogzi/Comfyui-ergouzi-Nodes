@@ -42,9 +42,8 @@ from .nodes.EGSZJDYS import EGSZJDYS
 from .nodes.EGSZHZ import EG_SS_RYZH
 from .nodes.EGWBZYSRK import EGZYWBKNode
 from .nodes.EGZZTXHZ import EGTXZZZHNode
+from .nodes.EGJBCHBMQ import EGJBCH
 
-# A dictionary that contains all nodes you want to export with their names
-# NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
     "EG_FX_BDAPI": EGBDAPINode,
     "EG_TX_CCHQ": EGTXCCHQ,
@@ -90,9 +89,9 @@ NODE_CLASS_MAPPINGS = {
     "EG_SS_RYZH" : EG_SS_RYZH,
     "EG_ZY_WBK" : EGZYWBKNode,
     "EG_TXZZ_ZH" : EGTXZZZHNode,
+    "ER_JBCH": EGJBCH,
 }
 
-# A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
     "EG_FX_BDAPI" : "2🐕Baidu Translation API",
     "EG_TX_CCHQ" : "2🐕Image size acquisition",
@@ -138,4 +137,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "EG_SS_RYZH" : "2🐕Int Float Text Swap",
     "EG_ZY_WBK" : "2🐕Free input box",
     "EG_TXZZ_ZH" : "2🐕Mask image exchange",
+    "ER_JBCH": "2🐕Redraw encoder",
 }
