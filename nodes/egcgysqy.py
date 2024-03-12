@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 from torchvision import transforms
 from skimage import exposure
+from skimage.transform import resize
 
 
 def tensor_to_pil(img_tensor, batch_index=0):
@@ -31,9 +32,19 @@ class EGSCQYQBQYNode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "source_image": ("IMAGE",),  
-                "target_image": ("IMAGE",),  
+                "source_image": ("IMAGE",),
+                "target_image": ("IMAGE",),
             },
+            "optional": {
+                "strength": ("FLOAT", {
+                    "default": 50, 
+                    "min": 0, 
+                    "max": 100, 
+                    "step": 1,
+                    "precision": 100,
+                    "display": "slider" 
+                }),
+            }
         }
 
     RETURN_TYPES = ("IMAGE",)
@@ -41,21 +52,21 @@ class EGSCQYQBQYNode:
     FUNCTION = "transfer_color"
     CATEGORY = "2🐕/🖼️Image/🎨Color processing"
 
-    def transfer_color(self, source_image, target_image):
-        
+    def transfer_color(self, source_image, target_image, strength=50):
         source_pil = tensor_to_pil(source_image)
         target_pil = tensor_to_pil(target_image)
-        
+    
         source_np = np.array(source_pil)
         target_np = np.array(target_pil)
-        
+    
         matched_target_np = np.empty_like(target_np)
-        for i in range(source_np.shape[-1]):  
+        for i in range(source_np.shape[-1]):
             matched_target_np[:, :, i] = exposure.match_histograms(
                 target_np[:, :, i], source_np[:, :, i]
             )
-        
-        matched_target_pil = Image.fromarray(matched_target_np)
-        
-        result_tensor = pil_to_tensor(matched_target_pil)
+    
+        result_np = (1 - strength / 100) * target_np + (strength / 100) * matched_target_np
+        result_pil = Image.fromarray(result_np.astype(np.uint8))
+    
+        result_tensor = pil_to_tensor(result_pil)
         return (result_tensor,)
