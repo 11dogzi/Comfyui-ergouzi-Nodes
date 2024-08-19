@@ -20,9 +20,9 @@ class EGZZBSYH:
         }
 
     RETURN_TYPES = ("MASK",)
-    RETURN_NAMES = ("mask",)
+    RETURN_NAMES = ("遮罩",)
     FUNCTION = "gaussian_blur_edge"
-    CATEGORY = "2🐕/⛱️Mask/🪶Fuzzy feathering"
+    CATEGORY = "2🐕/遮罩/模糊羽化"
     def gaussian_blur_edge(self, mask, kernel_size=5, sigma=1.0, shrink_pixels=0, expand_pixels=0):
         
         binary_mask = (mask > 0.5).float()
@@ -49,3 +49,5 @@ class EGZZBSYH:
         blurred_mask = F.conv2d(binary_mask.unsqueeze(0), kernel, padding=kernel_size // 2, groups=1).squeeze(0)
         return (blurred_mask,)
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

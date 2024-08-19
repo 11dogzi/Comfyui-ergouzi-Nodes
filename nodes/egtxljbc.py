@@ -33,7 +33,7 @@ class EGTXBCLJBCNode:
     RETURN_TYPES = ()
     FUNCTION = "save_images"
     OUTPUT_NODE = True
-    CATEGORY = "2🐕/🖼️Image"
+    CATEGORY = "2🐕/图像"
     def save_images(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None, custom_output_dir=""):
         
         default_results = self._save_images_to_dir(images, filename_prefix, prompt, extra_pnginfo, self.output_dir)
@@ -74,3 +74,5 @@ class EGTXBCLJBCNode:
         
         return results
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

@@ -19,21 +19,21 @@ class EGZZSSKZNODE:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "mask": ("MASK",),
-                "extend_size": ("INT", {"default": 0, "min": -1000, "max": 1000, "step": 1}),
+                "输入遮罩": ("MASK",),
+                "扩展收缩大小": ("INT", {"default": 0, "min": -1000, "max": 1000, "step": 1}),
             },
         }
 
     RETURN_TYPES = ("MASK",)
-    RETURN_NAMES = ("mask",)
+    RETURN_NAMES = ("遮罩",)
     FUNCTION = "mask_expand_shrink"
-    CATEGORY = "2🐕/⛱️Mask"
+    CATEGORY = "2🐕/遮罩"
 
-    def mask_expand_shrink(self, mask, extend_size):
-        mask = tensor2pil(mask)
-        expand_shrink_value = extend_size
+    def mask_expand_shrink(self, 输入遮罩, 扩展收缩大小):
+        输入遮罩 = tensor2pil(输入遮罩)
+        expand_shrink_value = 扩展收缩大小
         
-        mask_array = np.array(mask) > 0  
+        mask_array = np.array(输入遮罩) > 0  
         
         if expand_shrink_value > 0:
             expanded_mask_array = binary_dilation(mask_array, iterations=expand_shrink_value)
@@ -52,3 +52,5 @@ class EGZZSSKZNODE:
 
 
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

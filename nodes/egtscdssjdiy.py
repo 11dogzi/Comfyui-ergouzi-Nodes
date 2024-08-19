@@ -28,16 +28,16 @@ class EGSJNode:
         input_types = {
             "optional": {
                 
-                "Custom_Type1": (["None"] + cls.CATEGORY_KEYS, {"default": "None"}),
-                "weight1": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
-                "Custom_Type2": (["None"] + cls.CATEGORY_KEYS, {"default": "None"}),
-                "weight2": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
-                "Custom_Type3": (["None"] + cls.CATEGORY_KEYS, {"default": "None"}),
-                "weight3": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
-                "Custom_Type4": (["None"] + cls.CATEGORY_KEYS, {"default": "None"}),
-                "weight4": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
-                "Custom_Type5": (["None"] + cls.CATEGORY_KEYS, {"default": "None"}),
-                "weight5": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
+                "超级键1": (["无"] + cls.CATEGORY_KEYS, {"default": "无"}),
+                "权重1": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
+                "超级键2": (["无"] + cls.CATEGORY_KEYS, {"default": "无"}),
+                "权重2": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
+                "超级键3": (["无"] + cls.CATEGORY_KEYS, {"default": "无"}),
+                "权重3": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
+                "超级键4": (["无"] + cls.CATEGORY_KEYS, {"default": "无"}),
+                "权重4": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
+                "超级键5": (["无"] + cls.CATEGORY_KEYS, {"default": "无"}),
+                "权重5": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"}),
                 "seed": ("INT", {"default": 0, "min": -1125899906842624, "max": 1125899906842624}),
             },
             "required": {
@@ -64,7 +64,7 @@ class EGSJNode:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("prompt",)
     FUNCTION = "generate_prompt"
-    CATEGORY = "2🐕/🏷️Prompt word master/🔀random class"
+    CATEGORY = "2🐕/提示词大师/随机类"
 
     def __init__(self):
         self.load_json()
@@ -86,16 +86,16 @@ class EGSJNode:
     def generate_prompt(self, **kwargs):
         prompt_parts = []
         for i in range(1, 6):  
-            selected_key = kwargs.get(f"Custom_Type{i}")
-            weight = kwargs.get(f"weight{i}", 1.0)
+            selected_key = kwargs.get(f"超级键{i}")
+            weight = kwargs.get(f"权重{i}", 1.0)
             if selected_key not in self.CATEGORY_KEYS:
                 continue
             
-            options_keys = [k for k in self.get_options_keys(selected_key) if k != "None"]
+            options_keys = [k for k in self.get_options_keys(selected_key) if k != "无"]
             if options_keys:  
                 random_choice = random.choice(options_keys)
                 
-                if random_choice != "None":
+                if random_choice != "无":
                     
                     if weight != 1:
                         prompt_parts.append(f"({self.options[selected_key][random_choice]}:{weight:.1f})")
@@ -110,3 +110,5 @@ class EGSJNode:
 
 
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

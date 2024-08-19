@@ -2,9 +2,9 @@ import json
 import os
 import random
 
-class EGTSCDSFGLNode:
-    JSON_FILE_PATH = 'options.json'
-    CATEGORY_KEYS = ['制图特效', '画风', '主题', '艺术风格', '艺术破格', '插画风格', '艺术家', '电影导演']
+class EGTSCDSSRJKNode:
+    JSON_FILE_PATH = 'srjk.json'
+    CATEGORY_KEYS = ['起始提示词', '摄影创造力', '构图', '渲染器']
 
     def __init__(self):
         self.load_json()
@@ -38,7 +38,7 @@ class EGTSCDSFGLNode:
     def get_input_types_from_keys(keys):
         input_types = {}
         for key in keys:
-            input_types[key] = (tuple(EGTSCDSFGLNode.get_options_keys(key)), {"default": "无"})
+            input_types[key] = (tuple(EGTSCDSSRJKNode.get_options_keys(key)), {"default": "无"})
             input_types[f"{key}权重"] = ("FLOAT", {"default": 1.0, "min": 0.1, "max": 2, "step": 0.1, "display": "slider"})
         return input_types
 
@@ -47,7 +47,7 @@ class EGTSCDSFGLNode:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
         json_dir = os.path.join(parent_dir, 'json')  
-        json_file_path = os.path.join(json_dir, EGTSCDSFGLNode.JSON_FILE_PATH)
+        json_file_path = os.path.join(json_dir, EGTSCDSSRJKNode.JSON_FILE_PATH)
     
         with open(json_file_path, 'r', encoding='utf-8') as f:
             options = json.load(f)
@@ -75,7 +75,6 @@ class EGTSCDSFGLNode:
                 随机选择 = random.choice(可选)
                 weight_key = f"{key}权重"
                 weight = kwargs[weight_key] if weight_key in kwargs and kwargs[weight_key] is not None else 1
-                
                 if weight != 1:
                     prompt_parts[key] = f"({self.options[key][随机选择]}:{weight:.1f})"
                 else:

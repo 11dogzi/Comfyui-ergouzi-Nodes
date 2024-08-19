@@ -1,4 +1,4 @@
-NAMESPACE='2🐕Choice Switch'
+NAMESPACE='2🐕按数字选择切换'
 
 def is_context_empty(ctx):
   """Checks if the provided ctx is None or contains just None values."""
@@ -34,7 +34,7 @@ def is_none(value):
 class EGXZQHNode:
   """The any switch. """
 
-  NAME = get_name("Select output")
+  NAME = get_name("选择输出")
   CATEGORY = get_category()
 
   @classmethod
@@ -42,36 +42,38 @@ class EGXZQHNode:
     return {
       "required": {},
       "optional": {
-        "input01": (any_type,),
-        "input02": (any_type,),
-        "input03": (any_type,),
-        "input04": (any_type,),
-        "input05": (any_type,),
-        "input06": (any_type,),
-        "choice": (["1", "2", "3", "4", "5", "6"],)
+        "输入01": (any_type,),
+        "输入02": (any_type,),
+        "输入03": (any_type,),
+        "输入04": (any_type,),
+        "输入05": (any_type,),
+        "输入06": (any_type,),
+        "选择": (["1", "2", "3", "4", "5", "6"],)
       },
     }
 
   RETURN_TYPES = (any_type,)
-  RETURN_NAMES = ('output',)
+  RETURN_NAMES = ('输出',)
   FUNCTION = "switch"
-  CATEGORY = "2🐕/🆎Choice"
+  CATEGORY = "2🐕/选择"
 
-  def switch(self, input01=None, input02=None, input03=None, input04=None, input05=None, input06=None, choice=None):
+  def switch(self, 输入01=None, 输入02=None, 输入03=None, 输入04=None, 输入05=None, 输入06=None, 选择=None):
     """Chooses the item to output based on the user's selection."""
-    if choice is not None:
-        if choice == "1":
-            return (input01,)
-        elif choice == "2":
-            return (input02,)
-        elif choice == "3":
-            return (input03,)
-        elif choice == "4":
-            return (input04,)
-        elif choice == "5":
-            return (input05,)
-        elif choice == "6":
-            return (input06,)
+    if 选择 is not None:
+        if 选择 == "1":
+            return (输入01,)
+        elif 选择 == "2":
+            return (输入02,)
+        elif 选择 == "3":
+            return (输入03,)
+        elif 选择 == "4":
+            return (输入04,)
+        elif 选择 == "5":
+            return (输入05,)
+        elif 选择 == "6":
+            return (输入06,)
         else:
             return (None,)
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

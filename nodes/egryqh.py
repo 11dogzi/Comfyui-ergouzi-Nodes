@@ -1,4 +1,4 @@
-NAMESPACE='2🐕Unrestricted switching'
+NAMESPACE='2🐕无限制递归切换'
 
 def is_context_empty(ctx):
   return not ctx or all(v is None for v in ctx.values())
@@ -38,33 +38,35 @@ class EGRYQHNode:
     return {
       "required": {},
       "optional": {
-        "input01": (any_type,),
-        "input02": (any_type,),
-        "input03": (any_type,),
-        "input04": (any_type,),
-        "input05": (any_type,),
-        "input06": (any_type,),
+        "输入01": (any_type,),
+        "输入02": (any_type,),
+        "输入03": (any_type,),
+        "输入04": (any_type,),
+        "输入05": (any_type,),
+        "输入06": (any_type,),
       },
     }
 
   RETURN_TYPES = (any_type,)
-  RETURN_NAMES = ('output',)
+  RETURN_NAMES = ('输出',)
   FUNCTION = "switch"
-  CATEGORY = "2🐕/🆎Choice"
+  CATEGORY = "2🐕/选择"
 
-  def switch(self, input01=None, input02=None, input03=None, input04=None, input05=None,input06=None):
+  def switch(self, 输入01=None, 输入02=None, 输入03=None, 输入04=None, 输入05=None,输入06=None):
     any_value = None
-    if not is_none(input01):
-      any_value = input01
-    elif not is_none(input02):
-      any_value = input02
-    elif not is_none(input03):
-      any_value = input03
-    elif not is_none(input04):
-      any_value = input04
-    elif not is_none(input05):
-      any_value = input05
-    elif not is_none(input06):
-      any_value = input06
+    if not is_none(输入01):
+      any_value = 输入01
+    elif not is_none(输入02):
+      any_value = 输入02
+    elif not is_none(输入03):
+      any_value = 输入03
+    elif not is_none(输入04):
+      any_value = 输入04
+    elif not is_none(输入05):
+      any_value = 输入05
+    elif not is_none(输入06):
+      any_value = 输入06
     return (any_value,)
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

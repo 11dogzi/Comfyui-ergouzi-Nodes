@@ -1,24 +1,26 @@
-class EGRYHT:
+class EGXZRYHT:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {
-                    "浮点权重": ("FLOAT", {
+                    "选择数量": ("FLOAT", {
                         "default": 1,
-                        "min": 0,
-                        "max": 1,
-                        "step": 0.01,
+                        "min": 1,
+                        "max": 6,
+                        "step": 1,
                         "display": "slider"
                     }),
                 },
                 "optional": {}
         }
-    RETURN_TYPES = ("FLOAT",)
+    RETURN_TYPES = ("INT",)
     FUNCTION = "run"
     CATEGORY = "2🐕/数字"
     INPUT_IS_LIST = False
     OUTPUT_IS_LIST = (False,)
-    def run(self, 浮点权重):
-        scaled_number = 浮点权重
+
+    def run(self, 选择数量):
+        # 将浮点数转换为整数
+        scaled_number = int(选择数量)
         return (scaled_number,)
 
 

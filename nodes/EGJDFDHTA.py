@@ -1,10 +1,10 @@
-class EGRYHT:
+class EGRYHTA:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {
                     "浮点权重": ("FLOAT", {
-                        "default": 1,
-                        "min": 0,
+                        "default": 0,
+                        "min": -1,
                         "max": 1,
                         "step": 0.01,
                         "display": "slider"

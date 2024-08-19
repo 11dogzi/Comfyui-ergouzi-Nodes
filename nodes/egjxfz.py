@@ -21,23 +21,23 @@ class EGJXFZNODE:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "image": ("IMAGE",),
-                "direction": (["level", "vertical"],),
+                "输入图像": ("IMAGE",),
+                "方向": (["水平", "垂直"],),
             },
         }
 
     RETURN_TYPES = ("IMAGE",)
-    RETURN_NAMES = ("image",)
+    RETURN_NAMES = ("图像",)
     FUNCTION = "image_flip"
-    CATEGORY = "2🐕/🖼️Image"
+    CATEGORY = "2🐕/图像"
 
-    def image_flip(self, image, direction):
+    def image_flip(self, 输入图像, 方向):
         batch_tensor = []
-        for image in image:
+        for image in 输入图像:
             image = tensor2pil(image)
-            if direction == 'level':
+            if 方向 == '水平':
                 image = image.transpose(Image.FLIP_LEFT_RIGHT)
-            elif direction == 'vertical':
+            elif 方向 == '垂直':
                 image = image.transpose(Image.FLIP_TOP_BOTTOM)
             batch_tensor.append(pil2tensor(image))
         batch_tensor = torch.cat(batch_tensor, dim=0)
@@ -47,3 +47,5 @@ class EGJXFZNODE:
 
 
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用
