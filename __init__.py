@@ -54,6 +54,8 @@ from .nodes.EGZZFQTC import EGJFZZTC
 from .nodes.EGZZBYCJ import EGZZRH
 from .nodes.EGJUCHCYQ import EGCYQJB
 from .nodes.egtscdssrjknode import EGTSCDSSRJKNode
+from .nodes.EGDZXLJZ import SequentialImageLoader
+from .nodes.EGXLWBBC import SaveTextToFile
 
 NODE_CLASS_MAPPINGS = {
     "EG_FX_BDAPI": EGBDAPINode,
@@ -112,6 +114,8 @@ NODE_CLASS_MAPPINGS = {
     "EG_ZZ_RH" : EGZZRH,
     "EG_CYQ_JB" : EGCYQJB,
     "EG_TSCDS_SRJK" : EGTSCDSSRJKNode,
+    "SequentialImageLoader": SequentialImageLoader,
+    "SaveTextToFile": SaveTextToFile,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -169,6 +173,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "EG_ZZ_TMTX" : "2🐕透明图像裁剪",
     "EG_JF_ZZTC" : "2🐕遮罩分块填充",
     "EG_ZZ_RH" : "2🐕遮罩边缘检测",
-    "EG_CYQ_JB" : "2🐕局部重绘采样器" ,
-    "EG_TSCDS_SRJK" : "2🐕提示词大师素人极客类" ,
+    "EG_CYQ_JB" : "2🐕局部重绘采样器",
+    "EG_TSCDS_SRJK" : "2🐕提示词大师素人极客类",
+    "SequentialImageLoader": "2🐕单张加载训练集图像",
+    "SaveTextToFile": "2🐕训练tag保存"
 }
