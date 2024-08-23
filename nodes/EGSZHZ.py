@@ -1,4 +1,4 @@
-NAMESPACE='2🐕Int Float Text Swap'
+NAMESPACE='2🐕整数浮点字符串格式转换'
 def is_context_empty(ctx):
     return not ctx or all(v is None for v in ctx.values())
 def get_category(sub_dirs=None):
@@ -29,29 +29,28 @@ def convert_to_float(value):
         return None
 def convert_to_str(value):
     return str(value)
-class EG_SS_RYZH:
+class EGSSRYZH:
     NAME = get_name("Any Switch")
     CATEGORY = get_category()
     @classmethod
     def INPUT_TYPES(cls):
         return {
-            "required": {"Any_input": (any_type,)},
+            "required": {"任意输入": (any_type,)},
             "optional": {},
         }
     RETURN_TYPES = (any_type, any_type, any_type)
-    RETURN_NAMES = ('Int', 'Float', 'Text')
+    RETURN_NAMES =('整数', '浮点', '文本')
     FUNCTION = "switch"
-    CATEGORY = "2🐕/🔢number"
-    def switch(self, Any_input=None):
-        if Any_input is None:
+    CATEGORY = "2🐕/数字"
+    def switch(self, 任意输入=None):
+        if 任意输入 is None:
             return (None, None, None)
         
-        int_output = convert_to_int(Any_input)
-        float_output = convert_to_float(Any_input)
-        str_output = convert_to_str(Any_input)
+        int_output = convert_to_int(任意输入)
+        float_output = convert_to_float(任意输入)
+        str_output = convert_to_str(任意输入)
         
         return (int_output, float_output, str_output)
 
-NODE_CLASS_MAPPINGS = { "EG_SS_RYZH" : EG_SS_RYZH }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_SS_RYZH" : "2🐕Int Float Text Swap" }
 
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

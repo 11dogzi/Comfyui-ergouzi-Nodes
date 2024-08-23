@@ -21,48 +21,48 @@ class EGZZHBCJNode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "operation": (["merge", "crop", "intersect", "not_intersect"], {}),
+                "模式": (["合并", "裁剪", "相交", "不相交"], {}),
             },
             "optional": {
-                "target_image": ("IMAGE", {}),
-                "target_mask": ("MASK", {}),
-                "source_image": ("IMAGE", {}),
-                "source_mask": ("MASK", {}),
+                "底遮罩图": ("IMAGE", {}),
+                "底遮罩": ("MASK", {}),
+                "素材遮罩图": ("IMAGE", {}),
+                "素材遮罩": ("MASK", {}),
             },
         }
     RETURN_TYPES = ("MASK", "IMAGE")
-    RETURN_NAMES = ("result_mask", "result_image")
-    FUNCTION = "mask_operation"
-    CATEGORY = "2🐕/⛱️Mask"
-    def mask_operation(self, operation, source_image=None, target_image=None, source_mask=None, target_mask=None):
+    RETURN_NAMES = ("合并遮罩", "合并遮罩图")
+    FUNCTION = "mask_模式"
+    CATEGORY = "2🐕/遮罩"
+    def mask_模式(self, 模式, 素材遮罩图=None, 底遮罩图=None, 素材遮罩=None, 底遮罩=None):
         # Convert source and target images to masks if provided
-        if source_image is not None:
-            source_mask_pil = tensor2pil(source_image)
-            source_mask_pil = image2mask(source_mask_pil)
+        if 素材遮罩图 is not None:
+            素材遮罩_pil = tensor2pil(素材遮罩图)
+            素材遮罩_pil = image2mask(素材遮罩_pil)
         else:
-            source_mask_pil = tensor2pil(source_mask)
-        if target_image is not None:
-            target_mask_pil = tensor2pil(target_image)
-            target_mask_pil = image2mask(target_mask_pil)
+            素材遮罩_pil = tensor2pil(素材遮罩)
+        if 底遮罩图 is not None:
+            底遮罩_pil = tensor2pil(底遮罩图)
+            底遮罩_pil = image2mask(底遮罩_pil)
         else:
-            target_mask_pil = tensor2pil(target_mask)
+            底遮罩_pil = tensor2pil(底遮罩)
         # Resize source mask to target mask size
-        source_mask_pil = resize_mask(source_mask_pil, target_mask_pil.size)
-        source_mask_array = np.array(source_mask_pil) > 0
-        target_mask_array = np.array(target_mask_pil) > 0
-        if operation == "merge":
-            result_mask_array = np.logical_or(source_mask_array, target_mask_array)
-        elif operation == "crop":
-            result_mask_array = np.logical_and(target_mask_array, np.logical_not(source_mask_array))
-        elif operation == "intersect":
-            result_mask_array = np.logical_and(source_mask_array, target_mask_array)
-        elif operation == "not_intersect":
-            result_mask_array = np.logical_xor(source_mask_array, target_mask_array)
+        素材遮罩_pil = resize_mask(素材遮罩_pil, 底遮罩_pil.size)
+        素材遮罩_array = np.array(素材遮罩_pil) > 0
+        底遮罩_array = np.array(底遮罩_pil) > 0
+        if 模式 == "合并":
+            合并遮罩_array = np.logical_or(素材遮罩_array, 底遮罩_array)
+        elif 模式 == "裁剪":
+            合并遮罩_array = np.logical_and(底遮罩_array, np.logical_not(素材遮罩_array))
+        elif 模式 == "相交":
+            合并遮罩_array = np.logical_and(素材遮罩_array, 底遮罩_array)
+        elif 模式 == "不相交":
+            合并遮罩_array = np.logical_xor(素材遮罩_array, 底遮罩_array)
         else:
-            raise ValueError("Invalid operation selected")
-        result_mask = Image.fromarray((result_mask_array * 255).astype(np.uint8))
-        result_mask_tensor = pil2tensor(result_mask)
-        result_image_tensor = pil2tensor(result_mask)
-        return [result_mask_tensor, result_image_tensor]
-NODE_CLASS_MAPPINGS = { "EG_ZZHBCJ" : EGZZHBCJNode }
-NODE_DISPLAY_NAME_MAPPINGS = { "EG_ZZHBCJ" : "2🐕Mask can be cut arbitrarily" }
+            raise ValueError("Invalid 模式 selected")
+        合并遮罩 = Image.fromarray((合并遮罩_array * 255).astype(np.uint8))
+        合并遮罩_tensor = pil2tensor(合并遮罩)
+        合并遮罩图_tensor = pil2tensor(合并遮罩)
+        return [合并遮罩_tensor, 合并遮罩图_tensor]
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

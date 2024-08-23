@@ -19,10 +19,10 @@ class EGTSCMBGLNode:
                 try:
                     cls.options = json.load(f)
                 except json.JSONDecodeError:
-                    print("Template file format error, a new template file will be created for you。")
+                    print("模板文件格式错误，将为你创建一个新的模板文件。")
                     cls.options = {}
         else:
-            print("The template file does not exist. We will create a new template file for you。")
+            print("模板文件不存在，将为你创建一个新的模板文件。")
             cls.options = {}
             cls.save_options()
     @classmethod
@@ -43,58 +43,60 @@ class EGTSCMBGLNode:
     def INPUT_TYPES(cls):
         cls.load_options()  
         keys_list = list(cls.options.keys())  
-        default_key = keys_list[0] if keys_list else 'None'  
+        default_key = keys_list[0] if keys_list else '无'  
         return {
             "optional": {
-                "Read": (keys_list, {"default": default_key}),
-                "New_Name": ("STRING", {"default": "Please enter a name"}),
-                "New_Content": ("STRING", {"default": "Please enter the content"}),
-                "Function": (["Read", "New", "Delete"], {"default": "Read"}),
+                "读取模板": (keys_list, {"default": default_key}),
+                "新建模板名": ("STRING", {"default": "请输入名称"}),
+                "新建提示词内容": ("STRING", {"default": "请输入内容"}),
+                "功能选择": (["读取模板", "新建模板", "删除读取模板"], {"default": "读取模板"}),
             },
             "required": {
             }
         }
 
     RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("Text",)
+    RETURN_NAMES = ("文本",)
     FUNCTION = "process_action"
-    CATEGORY = "2🐕/🏷️Prompt word master/✍️custom"
+    CATEGORY = "2🐕/提示词大师/模板管理"
 
-    def process_action(self, Read='None', New_Name='Please enter a name', New_Content='Please enter the content', Function='Read'):
+    def process_action(self, 读取模板='无', 新建模板名='请输入名称', 新建提示词内容='请输入内容', 功能选择='读取模板'):
         self.load_options()
-        if Function == 'New':
-            print("2🐕Successfully saved for you, more SD tutorials are available at B站@灵仙儿和二狗子")
-            self.options[New_Name] = New_Content
+        if 功能选择 == '新建模板':
+            print("2🐕已为你保存成功,更多SD教程尽在B站@灵仙儿和二狗子")
+            self.options[新建模板名] = 新建提示词内容
             self.save_options()
             
             self.load_options()
-            return ("2🐕Successfully saved for you, more SD tutorials are available at B站@灵仙儿和二狗子",)
-        elif Function == 'Delete':
-            if Read in self.options:
-                print("2🐕Successfully deleted for you, more SD tutorials are available at B站@灵仙儿和二狗子")
-                del self.options[Read]
+            return ("2🐕已为你保存成功,更多SD教程尽在B站@灵仙儿和二狗子",)
+        elif 功能选择 == '删除读取模板':
+            if 读取模板 in self.options:
+                print("2🐕已为你删除成功,更多SD教程尽在B站@灵仙儿和二狗子")
+                del self.options[读取模板]
                 self.save_options()
                 
                 self.load_options()
-                return ("2🐕Successfully deleted for you, more SD tutorials are available at B站@灵仙儿和二狗子",)
+                return ("2🐕已为你删除成功,更多SD教程尽在B站@灵仙儿和二狗子",)
             else:
-                return ("2🐕We have checked that the template does not exist for you. More SD tutorials are available at B站@灵仙儿和二狗子",)
-                print("2🐕We have checked that the template does not exist for you. More SD tutorials are available at B站@灵仙儿和二狗子")
-        elif Function == 'Read':
-            if not Read or Read not in self.options:
-                print("2🐕We have checked that the template does not exist for you. More SD tutorials are available at B站@灵仙儿和二狗子")
-                return ("2🐕We have checked that the template does not exist for you. More SD tutorials are available at B站@灵仙儿和二狗子",)
+                return ("2🐕已为你检查该模板不存在,更多SD教程尽在B站@灵仙儿和二狗子",)
+                print("2🐕为你已检查该模板不存在,更多SD教程尽在B站@灵仙儿和二狗子")
+        elif 功能选择 == '读取模板':
+            if not 读取模板 or 读取模板 not in self.options:
+                print("2🐕已为你检查该模板不存在,更多SD教程尽在B站@灵仙儿和二狗子")
+                return ("2🐕已为你检查该模板不存在,更多SD教程尽在B站@灵仙儿和二狗子",)
             else:
                 
-                print(f"2🐕We have successfully read it for you. The template content is as follows. More SD tutorials are available at B站@灵仙儿和二狗子：")
-                print(self.options[Read])
+                print(f"2🐕已为你成功读取模板，模板内容如下,更多SD教程尽在B站@灵仙儿和二狗子：")
+                print(self.options[读取模板])
                 
-                return (self.options[Read],)
+                return (self.options[读取模板],)
         else:
-            return ("2🐕Operation error, please refresh the page. More SD tutorials are available at B站@灵仙儿和二狗子",)
-            print("2🐕Operation error, please refresh the page. More SD tutorials are available at @灵仙儿和二狗子")
+            return ("2🐕不清楚你的神操作,更多SD教程尽在B站@灵仙儿和二狗子",)
+            print("2🐕不清楚你的神操作,更多SD教程尽在B站@灵仙儿和二狗子")
 
 
 
 
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

@@ -55,7 +55,7 @@ class EGWHLJ:
         }
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "image_style_filter"
-    CATEGORY = "2🐕/🖼️Image/🪞Filter"
+    CATEGORY = "2🐕/图像/滤镜"
     def image_style_filter(self, image, style, All=False):
         if All:
             tensors = []
@@ -174,3 +174,5 @@ class EGWHLJ:
                     tensors.append(img)
             tensors = torch.cat(tensors, dim=0)
             return (tensors, )  
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

@@ -2,7 +2,7 @@ import requests
 import hashlib
 import json
 
-NAMESPACE = '2🐕Baidu Translation API'
+NAMESPACE = '2🐕百度API翻译'
 APPID_API_KEY_FILE = 'baidukey.json'
 
 def get_category(sub_dirs=None):
@@ -13,7 +13,7 @@ def get_category(sub_dirs=None):
 def get_name(name):
     return '{} ({})'.format(name, NAMESPACE)
 class EGBDAPINode:
-    NAME = get_name("Translation")
+    NAME = get_name("翻译")
     CATEGORY = get_category()
     @classmethod
     def INPUT_TYPES(cls):
@@ -21,19 +21,19 @@ class EGBDAPINode:
             "required": {
                 "text": ("STRING", {
                     "multiline": True,
-                    "default": "Free Baidu Translation API application website”https://fanyi-api.baidu.com/?ext_channel=Aldtype&fr=pcHeader“，Only the first time is required to input ID and KEY，More SD tutorials available on Bilibili @ 灵仙儿和二狗子🐕"
+                    "default": "免费百度API申请网站https://fanyi-api.baidu.com/?ext_channel=Aldtype&fr=pcHeader \n申请后在下方输入APP ID与密钥。\n仅第一次需要输入即可自动保存。\n更多SD教程尽在B站@灵仙儿和二狗子🐕"
                 }),
             },
             "optional": {
                 "appid": ("STRING", {}),
                 "api_key": ("STRING", {}),
-                "Translation_mode": (["zh-en", "en-zh"],)
+                "翻译模式": (["zh-en", "en-zh"],)
             },
         }
     RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ('TEXT',)
+    RETURN_NAMES = ('文本',)
     FUNCTION = "translate"
-    CATEGORY = "2🐕/🗒️Text"
+    CATEGORY = "2🐕/文本"
     def __init__(self, appid=None, api_key=None):
         self.appid = appid
         self.api_key = api_key
@@ -51,7 +51,7 @@ class EGBDAPINode:
     def save_credentials(self):
         with open(APPID_API_KEY_FILE, 'w') as f:
             json.dump({'appid': self.appid, 'api_key': self.api_key}, f)
-    def translate(self, text, appid=None, api_key=None, Translation_mode="zh-en"):
+    def translate(self, text, appid=None, api_key=None, 翻译模式="zh-en"):
         
         if appid:
             self.appid = appid
@@ -74,7 +74,7 @@ class EGBDAPINode:
             'sign': sign
         }
         
-        params['from'], params['to'] = Translation_mode.split('-')
+        params['from'], params['to'] = 翻译模式.split('-')
         
         response = requests.get(url, params=params)
         
@@ -99,3 +99,5 @@ class EGBDAPINode:
         sign = hashlib.md5(sign).hexdigest()
         return sign
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

@@ -32,11 +32,11 @@ class EGSCQYQBQYNode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "source_image": ("IMAGE",),
-                "target_image": ("IMAGE",),
+                "颜色图": ("IMAGE",),
+                "目标图": ("IMAGE",),
             },
             "optional": {
-                "strength": ("FLOAT", {
+                "迁移强度": ("FLOAT", {
                     "default": 50, 
                     "min": 0, 
                     "max": 100, 
@@ -50,11 +50,11 @@ class EGSCQYQBQYNode:
     RETURN_TYPES = ("IMAGE",)
     RETURN_NAMES = ("result_image",)
     FUNCTION = "transfer_color"
-    CATEGORY = "2🐕/🖼️Image/🎨Color processing"
+    CATEGORY = "2🐕/图像/色彩处理"
 
-    def transfer_color(self, source_image, target_image, strength=50):
-        source_pil = tensor_to_pil(source_image)
-        target_pil = tensor_to_pil(target_image)
+    def transfer_color(self, 颜色图, 目标图, 迁移强度=50):
+        source_pil = tensor_to_pil(颜色图)
+        target_pil = tensor_to_pil(目标图)
     
         source_np = np.array(source_pil)
         target_np = np.array(target_pil)
@@ -65,8 +65,10 @@ class EGSCQYQBQYNode:
                 target_np[:, :, i], source_np[:, :, i]
             )
     
-        result_np = (1 - strength / 100) * target_np + (strength / 100) * matched_target_np
+        result_np = (1 - 迁移强度 / 100) * target_np + (迁移强度 / 100) * matched_target_np
         result_pil = Image.fromarray(result_np.astype(np.uint8))
     
         result_tensor = pil_to_tensor(result_pil)
         return (result_tensor,)
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

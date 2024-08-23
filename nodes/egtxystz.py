@@ -8,7 +8,7 @@ class EGHTYSTZNode:
         return {
             "required": {
                 "image": ("IMAGE",),
-                "temperature": ("FLOAT", {
+                "色温": ("FLOAT", {
                     "default": 0, 
                     "min": -100, 
                     "max": 100, 
@@ -16,7 +16,7 @@ class EGHTYSTZNode:
                     "precision": 5,
                     "display": "slider" 
                 }),
-                "hue": ("FLOAT", {
+                "色调": ("FLOAT", {
                     "default": 0, 
                     "min": -90, 
                     "max": 90, 
@@ -24,7 +24,7 @@ class EGHTYSTZNode:
                     "precision": 180,
                     "display": "slider" 
                 }),
-                "brightness": ("FLOAT", {
+                "亮度": ("FLOAT", {
                     "default": 0, 
                     "min": -100, 
                     "max": 100, 
@@ -32,7 +32,7 @@ class EGHTYSTZNode:
                     "precision": 200,
                     "display": "slider" 
                 }),
-                "contrast": ("FLOAT", {
+                "对比度": ("FLOAT", {
                     "default": 0, 
                     "min": -100, 
                     "max": 100, 
@@ -40,7 +40,7 @@ class EGHTYSTZNode:
                     "precision": 200,
                     "display": "slider" 
                 }),
-                "saturation": ("FLOAT", {
+                "饱和度": ("FLOAT", {
                     "default": 0, 
                     "min": -100, 
                     "max": 100, 
@@ -48,7 +48,7 @@ class EGHTYSTZNode:
                     "precision": 200,
                     "display": "slider" 
                 }),
-                "gamma": ("INT", {
+                "明暗度": ("INT", {
                     "default": 1, 
                     "min": -0.2, 
                     "max": 2.2, 
@@ -56,7 +56,7 @@ class EGHTYSTZNode:
                     "precision": 200,
                     "display": "slider" 
                 }),
-                "blur": ("INT", {
+                "模糊度": ("INT", {
                     "default": 0, 
                     "min": -200, 
                     "max": 200, 
@@ -68,58 +68,60 @@ class EGHTYSTZNode:
         }
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "color_correct"
-    CATEGORY = "2🐕/🖼️Image/🪞Filter"
+    CATEGORY = "2🐕/图像/滤镜"
     def color_correct(
         self,
         image: torch.Tensor,
-        temperature: float,
-        hue: float,
-        brightness: float,
-        contrast: float,
-        saturation: float,
-        gamma: float,
-        blur: float,
+        色温: float,
+        色调: float,
+        亮度: float,
+        对比度: float,
+        饱和度: float,
+        明暗度: float,
+        模糊度: float,
     ):
         batch_size, height, width, _ = image.shape
         result = torch.zeros_like(image)
-        brightness /= 100
-        contrast /= 100
-        saturation /= 100
-        temperature /= 100
-        brightness = 1 + brightness
-        contrast = 1 + contrast
-        saturation = 1 + saturation
+        亮度 /= 100
+        对比度 /= 100
+        饱和度 /= 100
+        色温 /= 100
+        亮度 = 1 + 亮度
+        对比度 = 1 + 对比度
+        饱和度 = 1 + 饱和度
         for b in range(batch_size):
             tensor_image = image[b].numpy()
             modified_image = Image.fromarray((tensor_image * 255).astype(np.uint8))
-            # brightness
-            modified_image = ImageEnhance.Brightness(modified_image).enhance(brightness)
-            # contrast
-            modified_image = ImageEnhance.Contrast(modified_image).enhance(contrast)
+            # 亮度
+            modified_image = ImageEnhance.Brightness(modified_image).enhance(亮度)
+            # 对比度
+            modified_image = ImageEnhance.Contrast(modified_image).enhance(对比度)
             modified_image = np.array(modified_image).astype(np.float32)
-            # temperature
-            if temperature > 0:
-                modified_image[:, :, 0] *= 1 + temperature
-                modified_image[:, :, 1] *= 1 + temperature * 0.4
-            elif temperature < 0:
-                modified_image[:, :, 2] *= 1 - temperature
+            # 色温
+            if 色温 > 0:
+                modified_image[:, :, 0] *= 1 + 色温
+                modified_image[:, :, 1] *= 1 + 色温 * 0.4
+            elif 色温 < 0:
+                modified_image[:, :, 2] *= 1 - 色温
             modified_image = np.clip(modified_image, 0, 255) / 255
-            # gamma
-            modified_image = np.clip(np.power(modified_image, gamma), 0, 1)
-            # saturation
+            # 明暗度
+            modified_image = np.clip(np.power(modified_image, 明暗度), 0, 1)
+            # 饱和度
             hls_img = cv2.cvtColor(modified_image, cv2.COLOR_RGB2HLS)
-            hls_img[:, :, 2] = np.clip(saturation * hls_img[:, :, 2], 0, 1)
+            hls_img[:, :, 2] = np.clip(饱和度 * hls_img[:, :, 2], 0, 1)
             modified_image = cv2.cvtColor(hls_img, cv2.COLOR_HLS2RGB) * 255
-            # hue
+            # 色调
             hsv_img = cv2.cvtColor(modified_image, cv2.COLOR_RGB2HSV)
-            hsv_img[:, :, 0] = (hsv_img[:, :, 0] + hue) % 360
+            hsv_img[:, :, 0] = (hsv_img[:, :, 0] + 色调) % 360
             modified_image = cv2.cvtColor(hsv_img, cv2.COLOR_HSV2RGB)
-            # blur
-            if blur > 0:
-                modified_image = cv2.GaussianBlur(modified_image, (blur*2+1, blur*2+1), 0)
+            # 模糊度
+            if 模糊度 > 0:
+                modified_image = cv2.GaussianBlur(modified_image, (模糊度*2+1, 模糊度*2+1), 0)
             modified_image = modified_image.astype(np.uint8)
             modified_image = modified_image / 255
             modified_image = torch.from_numpy(modified_image).unsqueeze(0)
             result[b] = modified_image
         return (result,)
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

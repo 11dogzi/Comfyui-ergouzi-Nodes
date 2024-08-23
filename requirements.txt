@@ -6,3 +6,5 @@ numpy
 scipy
 scikit-image
 opencv-python
+aiohttp
+colorama

@@ -17,7 +17,7 @@ class EGJZRYTX:
         }
     RETURN_TYPES = ('IMAGE', 'MASK',)
     FUNCTION = "get_transparent_image"
-    CATEGORY = "2🐕/🖼️Image"
+    CATEGORY = "2🐕/图像"
     
     def get_transparent_image(self, file_path, smooth, seed, fill_color):
         try:
@@ -59,7 +59,10 @@ class EGJZRYTX:
                     mask_tensor = torch.from_numpy(mask)[None, None, :, :]
             
                     if fill_color == 'white':
-                        image_rgba.putalpha(255)
+                        for y in range(image_rgba.height):
+                            for x in range(image_rgba.width):
+                                if image_rgba.getpixel((x, y))[3] == 0:
+                                    image_rgba.putpixel((x, y), (255, 255, 255, 255))
                     elif fill_color == 'gray':
                         for y in range(image_rgba.height):
                             for x in range(image_rgba.width):
@@ -81,8 +84,10 @@ class EGJZRYTX:
                     return (image_tensor, mask_tensor)
             
         except Exception as e:
-            print(f"An error occurred while processing the image for 2🐕 friendly reminders：{e}")
+            print(f"2🐕温馨提示处理图像时出错请重置节点：{e}")
         return None, None
 
 
 
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用

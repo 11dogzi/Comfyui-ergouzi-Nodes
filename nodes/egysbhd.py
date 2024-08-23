@@ -28,7 +28,7 @@ class EGSCQYBHDQYYNode:
     RETURN_TYPES = ("IMAGE",)
     RETURN_NAMES = ("result_image",)
     FUNCTION = "transfer_saturation"
-    CATEGORY = "2🐕/🖼️Image/🎨Color processing"
+    CATEGORY = "2🐕/图像/色彩处理"
     def transfer_saturation(self, source_image, target_image):
         source_pil = tensor_to_pil(source_image)
         target_pil = tensor_to_pil(target_image)
@@ -56,3 +56,5 @@ class EGSCQYBHDQYYNode:
         result_tensor = pil_to_tensor(matched_target_pil)
         
         return (result_tensor,)
+
+# 本套插件版权所属B站@灵仙儿和二狗子，仅供学习交流使用，未经授权禁止一切商业性质使用
