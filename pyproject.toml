@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-ergouzi-nodes"
+description = "This is a node group kit that covers multiple nodes such as local refinement, tag management, random prompt words, text processing, image processing, mask processing, etc"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["requests", "torch", "torchvision", "Pillow", "numpy", "scipy", "scikit-image", "opencv-python"]
+
+[project.urls]
+Repository = "https://github.com/11dogzi/Comfyui-ergouzi-Nodes"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "Comfyui-ergouzi-Nodes"
+Icon = ""
